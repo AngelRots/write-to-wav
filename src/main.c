@@ -6,9 +6,7 @@
 #include "audiolib.h"
 #include "audiodef.h"
 
-#define PI 3.14159265358979323846
-
-
+#define PI      3.14159265358979323846
 #define MAX_AMP 32767
 
 int main(void)
@@ -64,7 +62,7 @@ int main(void)
     BYTE* audioData = (BYTE*)calloc(wav.DATASZ, sizeof(BYTE));
     for (int i = 0; i < numSamples; i++)
     {
-        int sampleValue = MAX_AMP * (sin(2 / 2) + sin(3 / 3) * NOTE_C3 * i) / wav.SMPLRATE;
+        int sampleValue = MAX_AMP * cos((2 * PI * NOTE_C3 * i) / wav.SMPLRATE);
         
         audioData[i * 2] = (BYTE)(sampleValue & 0xFF); // Lower byte
         audioData[i * 2 + 1] = (BYTE)((sampleValue >> 8) & 0xFF); // Upper byte

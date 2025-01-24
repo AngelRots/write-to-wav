@@ -7,9 +7,9 @@
 
 typedef unsigned char BYTE;
 
-#define CD_SMPLRATE 44100
-#define WAV_LINEARPCM 1
-#define WAV_STEREO 2
+#define CD_SMPLRATE     44100
+#define WAV_LINEARPCM   1
+#define WAV_STEREO      2
 
 //#pragma pack(push, 1) // Ensure no padding is added
 struct WAVHeader_s // WAV Structure [44 Bytes]
