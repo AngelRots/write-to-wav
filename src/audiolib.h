@@ -3,7 +3,7 @@
 #ifndef AUDIOLIB_H
 #define AUDIOLIB_H
 
-typedef unsigned char BYTE;
+typedef char BYTE;
 
 #define CD_SMPLRATE     44100
 #define WAV_LINEARPCM   1
@@ -14,10 +14,10 @@ typedef unsigned char BYTE;
 #pragma pack(push, 1)   // Ensure no padding is added
 struct WAVHeader_s      // WAV Structure [44 Bytes]
 {
-    char RIFF[4];       // Identifier "RIFF"
+    BYTE RIFF[4];       // Identifier "RIFF"
     int32_t SIZE;       // size of file - 8 bytes
-    char FTYPE[4];      // file type ("WAVE")
-    char FMT[4];        // "fmt " sub-chunk
+    BYTE FTYPE[4];      // file type ("WAVE")
+    BYTE FMT[4];        // "fmt " sub-chunk
     int32_t LEN;        // Length of format data
     int16_t AFORMAT;    // Audio format
     int16_t CHANNELS;   // Number of channels
