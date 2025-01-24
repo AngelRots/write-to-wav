@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <unistd.h>
 #include "audiolib.h"
@@ -14,26 +15,20 @@
 int main(void)
 {
     struct WAVHeader_s wav;
+    strncpy(wav.RIFF,"RIFF",4);
+            wav.RIFF[4] = '\0'; // Manually null-terminate
 
-    wav.RIFF[0] = 'R';
-    wav.RIFF[1] = 'I';
-    wav.RIFF[2] = 'F';
-    wav.RIFF[3] = 'F';
+    strncpy(wav.FTYPE,"WAVE",4);
+        wav.FTYPE[4] = '\0'; // Manually null-terminate
 
-    wav.FTYPE[0] = 'W';
-    wav.FTYPE[1] = 'A';
-    wav.FTYPE[2] = 'V';
-    wav.FTYPE[3] = 'E';
+    strncpy(wav.FMT,"fmt ",4);
+            wav.FMT[4] = '\0'; // Manually null-terminate
 
-    wav.FMT[0] = 'f';
-    wav.FMT[1] = 'm';
-    wav.FMT[2] = 't';
-    wav.FMT[3] = ' '; // NULL terminator
-    
-    wav.DATACHUNK[0] = 'd';
-    wav.DATACHUNK[1] = 'a';
-    wav.DATACHUNK[2] = 't';
-    wav.DATACHUNK[3] = 'a';
+    strncpy(wav.DATACHUNK,"data",4);
+            wav.DATACHUNK[4] = '\0'; // Manually null-terminate
+
+
+ 
 
     wav.BITDEPTH = 16; // Bits per sample
 
@@ -49,7 +44,12 @@ int main(void)
     // Calculate total file size
     wav.SIZE = sizeof(wav) + wav.DATASZ - 8; // 8 bytes for the RIFF header
 
-
+    if(sizeof(wav) != 44)
+    {
+        printf("WAV Header size doesn't match!\n");
+        exit(-1);
+    }
+    
     FILE* fp = fopen("output.wav", "wb");
     if (fp == NULL)
     {
@@ -85,7 +85,7 @@ int main(void)
     printf("Data Written!\n");
     printf("WAV Size: %.1fKB\n", round(wav.DATASZ));
 
-  
+  printf("%s\n",wav.RIFF);
     
 
     fclose(fp);

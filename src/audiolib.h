@@ -16,9 +16,9 @@ typedef unsigned char BYTE;
 struct WAVHeader_s // WAV Structure [44 Bytes]
 {
     char RIFF[4]; // Identifier « RIFF »
-    BYTE FTYPE[4]; // file type ("WAVE")
-    BYTE FMT[4]; // ("fmt ")
-    BYTE DATACHUNK[4]; // "data" chunk ID
+    char FTYPE[4]; // file type ("WAVE")
+    char FMT[4]; // ("fmt ")
+    char DATACHUNK[4]; // "data" chunk ID
     int32_t SIZE; // size of file - RIFF identifier
     int32_t LEN; // Length of format data
     int16_t AFORMAT; // Audio format
