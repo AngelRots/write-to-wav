@@ -4,12 +4,11 @@
 #include <math.h>
 #include <unistd.h>
 #include "audiolib.h"
+#include "audiodef.h"
 
 #define PI 3.14159265358979323846
 
-#define NOTE_C2 65.4
-#define NOTE_C3 130.813
-#define NOTE_C4 261.6
+
 #define MAX_AMP 32767
 
 int main(void)
