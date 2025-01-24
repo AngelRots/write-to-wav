@@ -43,7 +43,7 @@ int main(void)
     sleep(1);
     if (sizeof(wav) != WAV_EXSIZE)
     {
-        printf("WAV Header size doesn't match!\n");
+        printf("WAV Header size doesn't match! (%zu)\n",sizeof(wav));
         printf("Exiting program!\n");
         exit(-1);
     }
@@ -57,7 +57,9 @@ int main(void)
     }
 
     // Write the header to the file
+    printf("Writing Header information to file...\n");
     fwrite(&wav, 1, WAV_EXSIZE, fp);
+    
 
     BYTE* audioData = (BYTE*)calloc(wav.DATASZ, sizeof(BYTE));
     for (int i = 0; i < numSamples; i++)
