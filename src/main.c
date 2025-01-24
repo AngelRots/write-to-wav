@@ -16,13 +16,14 @@
 int main(void)
 {
     struct WAVHeader_s wav;
-    strncpy(wav.RIFF, "RIFF", 4);
 
-    strncpy(wav.FTYPE, "WAVE", 4);
+    memcpy(wav.RIFF, "RIFF", 4);
 
-    strncpy(wav.FMT, "fmt ", 4);
+    memcpy(wav.FTYPE, "WAVE", 4);
 
-    strncpy(wav.DATACHUNK, "data", 4);
+    memcpy(wav.FMT, "fmt ", 4);
+
+    memcpy(wav.DATACHUNK, "data", 4);
 
     wav.LEN = 16;                       // PCM
     wav.AFORMAT = WAV_LINEARPCM;        // PCM
