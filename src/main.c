@@ -61,7 +61,7 @@ int main(void)
     fwrite(&wav, sizeof(struct WAVHeader_s), 1, fp);
     if (sizeof(wav) != 0 || NULL)
     {
-        printf("Size of WAV Header: %lld\n", sizeof(wav));
+        printf("Size of WAV Header: %lld Bytes\n", sizeof(wav));
         printf("WAVE Header was written!\n");
     }
     else 
