@@ -1,11 +1,9 @@
 #include <stdint.h>
+#include "os_dep.h"
 
 #ifndef AUDIOLIB_H
 #define AUDIOLIB_H
 
-#ifndef _WIN32
-typedef char BYTE;
-#endif
 
 #define CD_SMPLRATE     44100
 #define WAV_LINEARPCM   1
@@ -16,10 +14,10 @@ typedef char BYTE;
 #pragma pack(push, 1)   // Ensure no padding is added
 struct WAVHeader_s      // WAV Structure [44 Bytes]
 {
-    BYTE RIFF[4];       // Identifier "RIFF"
+    SBYTE RIFF[4];       // Identifier "RIFF"
     int32_t SIZE;       // size of file - 8 bytes
-    BYTE FTYPE[4];      // file type ("WAVE")
-    BYTE FMT[4];        // "fmt " sub-chunk
+    SBYTE FTYPE[4];      // file type ("WAVE")
+    SBYTE FMT[4];        // "fmt " sub-chunk
     int32_t LEN;        // Length of format data
     int16_t AFORMAT;    // Audio format
     int16_t CHANNELS;   // Number of channels
