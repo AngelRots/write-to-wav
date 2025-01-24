@@ -9,6 +9,8 @@
 
 typedef char SBYTE;
 
+#define OS_PATHMAX 260
+
 
 // I HATE WINDOWS I HATE WINDOWS
 
