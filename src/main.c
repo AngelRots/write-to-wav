@@ -4,15 +4,14 @@
 #include <math.h>
 #include "audiolib.h"
 #include "audiodef.h"
+#include "os_dep.h"
 
-#ifdef _WIN32
-#include <windows.h>
-#else 
-#include <unistd.h>
-#endif
 
 #define PI      3.14159265358979323846
 #define MAX_AMP 32767
+
+
+
 
 int main(void)
 {
@@ -40,7 +39,7 @@ int main(void)
     wav.SIZE = 36 + wav.DATASZ; 
 
     printf("Checking WAV Header Size...\n");
-    sleep(1);
+    slp(1);
     if (sizeof(wav) != WAV_EXSIZE)
     {
         printf("WAV Header size doesn't match! (%zu)\n",sizeof(wav));
@@ -61,17 +60,17 @@ int main(void)
     fwrite(&wav, 1, WAV_EXSIZE, fp);
     
 
-    BYTE* audioData = (BYTE*)calloc(wav.DATASZ, sizeof(BYTE));
+    SBYTE* audioData = (SBYTE*)calloc(wav.DATASZ, sizeof(SBYTE));
     for (int i = 0; i < numSamples; i++)
     {
         int sampleValue = MAX_AMP * cos((2 * PI * NOTE_C3 * i) / wav.SMPLRATE);
 
-        audioData[i * 2] = (BYTE)(sampleValue & 0xFF);              // Lower byte
-        audioData[i * 2 + 1] = (BYTE)((sampleValue >> 8) & 0xFF);   // Upper byte
+        audioData[i * 2] = (SBYTE)(sampleValue & 0xFF);              // Lower byte
+        audioData[i * 2 + 1] = (SBYTE)((sampleValue >> 8) & 0xFF);   // Upper byte
     }
     printf("Writing Raw Data...\n");
-    sleep(1);
-    fwrite(audioData, sizeof(BYTE), wav.DATASZ, fp);
+    slp(1);
+    fwrite(audioData, sizeof(SBYTE), wav.DATASZ, fp);
     printf("Data Written!\n");
     printf("WAV Size: %.1fKB\n", round(wav.DATASZ / 1024.0));
 
