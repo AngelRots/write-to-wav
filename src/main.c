@@ -16,6 +16,8 @@
 int main(void)
 {
     struct WAVHeader_s wav;
+    char filename[OS_PATHMAX]; 
+    char fullFilename[OS_PATHMAX + 4]; 
 
     memcpy(wav.RIFF, "RIFF", 4);
 
@@ -36,8 +38,19 @@ int main(void)
     int numSamples = CD_SMPLRATE;                                       // number of samples for 1 second of audio
     wav.DATASZ = numSamples * wav.CHANNELS * (wav.BITDEPTH / 8);        // Size of audio data
 
-    // Calculate total file size
-    wav.SIZE = 36 + wav.DATASZ; 
+  
+    wav.SIZE = wav.DATASZ - 8; // RIFF Chunk Size
+
+    printf("Enter a filename: ");
+    scanf("%s", filename);
+    
+    snprintf(fullFilename, sizeof(fullFilename), "%s%s", filename,WAV_FMTEX);
+    
+    if(strlen(filename) > OS_PATHMAX - 4)
+    {
+        printf("Filename was too long!\n");
+        exit(-2);
+    }
 
     printf("Checking WAV Header Size...\n");
     slp(1);
@@ -49,7 +62,7 @@ int main(void)
     }
     printf("WAV Header is %zu bytes.\n", sizeof(wav));
 
-    FILE* fp = fopen("output.wav", "wb");
+    FILE* fp = fopen(fullFilename, "wb");
     if (fp == NULL)
     {
         printf("Error creating file!");
