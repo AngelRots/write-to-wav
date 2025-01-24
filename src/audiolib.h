@@ -9,15 +9,16 @@
 #define WAV_LINEARPCM   1
 #define WAV_STEREO      2
 #define WAV_EXSIZE      44 
+#define WAV_FMTEX       ".wav"
 
                         // Source: https://docs.fileformat.com/audio/wav/
 #pragma pack(push, 1)   // Ensure no padding is added
 struct WAVHeader_s      // WAV Structure [44 Bytes]
 {
-    SBYTE RIFF[4];       // Identifier "RIFF"
+    SBYTE RIFF[4];      // Identifier "RIFF"
     int32_t SIZE;       // size of file - 8 bytes
-    SBYTE FTYPE[4];      // file type ("WAVE")
-    SBYTE FMT[4];        // "fmt " sub-chunk
+    SBYTE FTYPE[4];     // file type ("WAVE")
+    SBYTE FMT[4];       // "fmt " sub-chunk
     int32_t LEN;        // Length of format data
     int16_t AFORMAT;    // Audio format
     int16_t CHANNELS;   // Number of channels
