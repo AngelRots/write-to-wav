@@ -4,4 +4,6 @@
 *.vscode
 *.out
 *.o
+*.plist
+*.yml
 wav_exec
