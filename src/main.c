@@ -32,8 +32,8 @@ int main(void)
     wav.BPERSEC = wav.SMPLRATE * wav.CHANNELS * (wav.BITDEPTH / 8);     // Bytes per second
     wav.BLOCKALIGN = wav.CHANNELS * (wav.BITDEPTH / 8);                 // Block align
 
-    int numSamples = CD_SMPLRATE;                                   // number of samples for 1 second of audio
-    wav.DATASZ = numSamples * wav.CHANNELS * (wav.BITDEPTH / 8);    // Size of audio data
+    int numSamples = CD_SMPLRATE;                                       // number of samples for 1 second of audio
+    wav.DATASZ = numSamples * wav.CHANNELS * (wav.BITDEPTH / 8);        // Size of audio data
 
     // Calculate total file size
     wav.SIZE = 36 + wav.DATASZ; 
