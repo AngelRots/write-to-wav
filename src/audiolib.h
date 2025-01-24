@@ -10,6 +10,7 @@ typedef unsigned char BYTE;
 #define WAV_STEREO      2
 #define WAV_EXSIZE      44 
 
+                        // Source: https://docs.fileformat.com/audio/wav/
 #pragma pack(push, 1)   // Ensure no padding is added
 struct WAVHeader_s      // WAV Structure [44 Bytes]
 {
