@@ -2,3 +2,6 @@
 *.wav
 *.exe
 *.vscode
+*.out
+*.o
+wav_exec
