@@ -1,4 +1,7 @@
-CFLAGS: -Wall
-all:
+SRC_DIR = src/
+TARGET = main.c
+CC = gcc
+CFLAGS = -Wall
 
-gcc main.c -o wav_exec
+all:
+	${CC} ${CFLAGS} ${SRC_DIR}${TARGET} -o wav_exec
