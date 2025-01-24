@@ -2,9 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <unistd.h>
 #include "audiolib.h"
 #include "audiodef.h"
+
+#ifdef _WIN32
+#include <windows.h>
+#else 
+#include <unistd.h>
+#endif
 
 #define PI      3.14159265358979323846
 #define MAX_AMP 32767
@@ -13,16 +18,12 @@ int main(void)
 {
     struct WAVHeader_s wav;
     strncpy(wav.RIFF, "RIFF", 4);
-    wav.RIFF[4] = '\0';             // Manually null-terminate
 
     strncpy(wav.FTYPE, "WAVE", 4);
-    wav.FTYPE[4] = '\0';            // Manually null-terminate
 
     strncpy(wav.FMT, "fmt ", 4);
-    wav.FMT[4] = '\0';              // Manually null-terminate
 
     strncpy(wav.DATACHUNK, "data", 4);
-    wav.DATACHUNK[4] = '\0';        // Manually null-terminate
 
     wav.LEN = 16;                       // PCM
     wav.AFORMAT = WAV_LINEARPCM;        // PCM
@@ -39,7 +40,7 @@ int main(void)
     wav.SIZE = 36 + wav.DATASZ; 
 
     printf("Checking WAV Header Size...\n");
-    sleep(0.5);
+    sleep(1);
     if (sizeof(wav) != WAV_EXSIZE)
     {
         printf("WAV Header size doesn't match!\n");
