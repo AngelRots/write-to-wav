@@ -42,10 +42,12 @@ int main(void)
 
     // Calculate total file size
     wav.SIZE = sizeof(wav) + wav.DATASZ - 8; // 8 bytes for the RIFF header
-
+    printf("Checking WAV Header Size...\n");
+    sleep(0.5);
     if(sizeof(wav) != 44)
     {
         printf("WAV Header size doesn't match!\n");
+        printf("Exiting program!\n");
         exit(-1);
     }
     
@@ -58,15 +60,6 @@ int main(void)
     
     // Write the header to the file
     fwrite(&wav, sizeof(struct WAVHeader_s), 1, fp);
-    if (sizeof(wav) != 0 || NULL)
-    {
-        printf("Size of WAV Header: %lld Bytes\n", sizeof(wav));
-        printf("WAVE Header was written!\n");
-    }
-    else 
-    {
-        printf("Error while writing WAV Header!\n");
-    }
 
     BYTE* audioData = (BYTE*)calloc(wav.DATASZ, sizeof(BYTE));
     for (int i = 0; i < numSamples; i++)
@@ -84,7 +77,6 @@ int main(void)
     printf("Data Written!\n");
     printf("WAV Size: %.1fKB\n", round(wav.DATASZ));
 
-  printf("%s\n",wav.RIFF);
     
 
     fclose(fp);
