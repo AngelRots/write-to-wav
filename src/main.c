@@ -46,7 +46,7 @@ int main(void)
         printf("Exiting program!\n");
         exit(-1);
     }
-    printf("WAV Header is %llu bytes.\n", sizeof(wav));
+    printf("WAV Header is %zu bytes.\n", sizeof(wav));
 
     FILE* fp = fopen("output.wav", "wb");
     if (fp == NULL)
