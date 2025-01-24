@@ -56,7 +56,7 @@ int main(void)
     }
 
     // Write the header to the file
-    fwrite(&wav, 1, 44, fp);
+    fwrite(&wav, 1, WAV_EXSIZE, fp);
 
     BYTE* audioData = (BYTE*)calloc(wav.DATASZ, sizeof(BYTE));
     for (int i = 0; i < numSamples; i++)
