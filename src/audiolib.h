@@ -3,7 +3,9 @@
 #ifndef AUDIOLIB_H
 #define AUDIOLIB_H
 
+#ifndef _WIN32
 typedef char BYTE;
+#endif
 
 #define CD_SMPLRATE     44100
 #define WAV_LINEARPCM   1
