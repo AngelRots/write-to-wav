@@ -18,7 +18,7 @@
 
 void gui_placeholder()
 {
-      SDL_Window* window = NULL;
+    SDL_Window* window = NULL;
     SDL_Renderer* render = NULL;
 
     if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) < 1) /* Returns true on success, false otherwise. */
