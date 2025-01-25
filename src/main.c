@@ -71,7 +71,7 @@ void gui_placeholder()
 
 int main(void)
 {
-    gui_placeholder();
+    //gui_placeholder();
 
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
