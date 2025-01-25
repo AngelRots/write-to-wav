@@ -7,7 +7,7 @@
 #include "audiodef.h"
 #include "os_dep.h"
 
-//#define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
+#define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
 #include <SDL3/SDL.h>
 
 
