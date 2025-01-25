@@ -9,7 +9,6 @@
 
 #define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 
 
 #define PI      3.14159265358979323846
@@ -21,7 +20,7 @@ void gui_placeholder()
     SDL_Window* window = NULL;
     SDL_Renderer* render = NULL;
 
-    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) < 1) /* Returns true on success, false otherwise. */
+    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) /* Returns true on success, false otherwise. */
     {
         printf("SDL wasn't initialized correctly!\n");
         SDL_Log("SDL Error: %s",SDL_GetError());
@@ -72,7 +71,7 @@ void gui_placeholder()
 
 int main(void)
 {
-    //gui_placeholder();
+    gui_placeholder();
 
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
