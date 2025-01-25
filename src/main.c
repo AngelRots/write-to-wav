@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
 #include "audiolib.h"
 #include "audiodef.h"
 #include "os_dep.h"
+
+//#define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
+#include <SDL3/SDL.h>
 
 
 #define PI      3.14159265358979323846
@@ -92,5 +96,6 @@ int main(void)
     free(audioData);
 
     printf("WAV file created successfully!\n");
+    SDL_Quit();
     return 0;
 }
