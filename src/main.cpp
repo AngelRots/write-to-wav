@@ -10,6 +10,10 @@
 
 
 #include "vgui/vgui_base.h"
+#include "imgui/include/imgui.h"
+#include "imgui/include/imgui_impl_sdl3.h"
+#include "imgui/include/imgui_impl_sdlrenderer3.h"
+#include <SDL3/SDL.h>
 
 enum EXITCODES 
 {
@@ -26,6 +30,103 @@ enum EXITCODES
 
 int main(void)
 {
+
+     
+    SDL_Window* winbase = NULL;
+    SDL_Renderer* rendbase = NULL;
+
+    struct VGUI vgui;
+    vgui.handle = "Meow!";
+    vgui.w = 800;
+    vgui.h = 600;
+    vgui.r = 255;
+    vgui.g = 255;
+    vgui.b = 255;
+
+
+    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) // Returns true on success, false otherwise. 
+    {
+        printf("SDL wasn't initialized correctly!\n");
+        SDL_Log("SDL Error: %s",SDL_GetError());
+        exit(EC_ERRINIT);
+        
+    }
+
+    winbase = SDL_CreateWindow(vgui.handle,vgui.w,vgui.h,0);
+    if(winbase == NULL)
+    {
+        SDL_Log("SDL Window Error: %s",SDL_GetError());
+        exit(EC_ERRWIN);
+    }
+
+    rendbase = SDL_CreateRenderer(winbase,NULL);
+    if(rendbase == NULL)
+    {
+        SDL_Log("SDL Renderer Error: %s",SDL_GetError());
+        exit(EC_ERRNRENDER);
+    }
+    
+    SDL_Event LIB_EVENT;
+    
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui_ImplSDL3_InitForSDLRenderer(winbase,rendbase);
+    ImGui_ImplSDLRenderer3_Init(rendbase);
+
+
+    int noInit = 0;
+    while(!noInit)
+    {
+        while(SDL_PollEvent(&LIB_EVENT)) 
+        {
+            switch(LIB_EVENT.type) 
+            {
+                case SDL_EVENT_QUIT:
+                SDL_Log("SDL3 Event Exception!");
+                noInit = 1;
+                break;
+            }
+            if(SDL_EVENT_MOUSE_MOTION == LIB_EVENT.type)
+            {
+                float mouse_x, mouse_y; 
+
+                SDL_GetMouseState(&mouse_x,&mouse_y);
+                printf("Mouse X:%f\n",mouse_x);
+
+            }
+
+        }
+        ImGui_ImplSDLRenderer3_NewFrame();
+        ImGui_ImplSDL3_NewFrame();
+
+        ImGui::NewFrame();
+
+        ImGui::Begin("IMGUI");
+        ImGui::Text("Cruel World!");
+        ImGui::End();
+        ImGui::Render();
+
+        SDL_SetRenderDrawColor(rendbase, vgui.r, vgui.g, vgui.b, 0xff);
+        SDL_RenderClear(rendbase);
+        
+        ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(),rendbase);
+
+        SDL_RenderPresent(rendbase);
+        SDL_Delay(1);
+
+        
+    }
+    SDL_Log("SDL Shutdown!");
+    ImGui_ImplSDLRenderer3_Shutdown();
+    ImGui_ImplSDL3_Shutdown();
+    ImGui::DestroyContext();
+    SDL_DestroyRenderer(rendbase);
+    SDL_DestroyWindow(winbase);
+    SDL_Quit();
+    
+
+    /*
 
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
@@ -84,4 +185,5 @@ int main(void)
 
     printf("WAV file created successfully!\n");
     return EC_SUCCESS;
+    */
 }
