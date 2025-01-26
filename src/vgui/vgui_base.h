@@ -1,7 +1,9 @@
 #ifndef VGUI_BASE_H
 #define VGUI_BASE_H
 
+#include <stdbool.h>
 #include <SDL3/SDL.h>
+
 
 struct VGUI 
 {
@@ -16,6 +18,7 @@ struct VGUI
     
    struct VGUIButton  
     {
+        
         const char* BID;  // Button ID 
         int b_w;          // Button Width
         int b_h;          // Button Height
@@ -24,7 +27,8 @@ struct VGUI
         Uint8 b_r;        // Red
         Uint8 b_g;        // Green
         Uint8 b_b;        // Blue
-
+        bool isPressed;
+        bool Released;
     };
  
 };

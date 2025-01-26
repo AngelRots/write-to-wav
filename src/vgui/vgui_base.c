@@ -12,7 +12,7 @@ void vgui_button(SDL_Renderer*rend,struct VGUIButton* vbutton)
         SDL_Log("SDL Renderer Error: %s",SDL_GetError());
         exit(-5);
     } 
-
+   
 
    SDL_FRect quickref;
    quickref.x = vbutton->b_x;
