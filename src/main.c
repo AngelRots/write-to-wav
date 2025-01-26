@@ -38,11 +38,6 @@ int main(void)
     vbutton.b_g = 255;
     vbutton.b_b = 255;
 
-
-    
-
-
-
     if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) /* Returns true on success, false otherwise. */
     {
         printf("SDL wasn't initialized correctly!\n");
@@ -101,17 +96,6 @@ int main(void)
     SDL_DestroyWindow(winbase);
     SDL_Quit();
 
-
-
-
-
-
-
-
-    
-
-   
-    
 
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
