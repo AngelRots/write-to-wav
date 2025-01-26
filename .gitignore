@@ -6,5 +6,5 @@
 *.o
 *.plist
 *.yml
+*.exe
 imgui.ini
-wav_exec
