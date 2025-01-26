@@ -28,6 +28,7 @@ enum EXITCODES
 
 int main(void)
 {
+    /*
     SDL_Window* winbase = NULL;
     SDL_Renderer* rendbase = NULL;
 
@@ -57,7 +58,7 @@ int main(void)
     button2.b_g = 0;
     button2.b_b = 0;
 
-    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) /* Returns true on success, false otherwise. */
+    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) // Returns true on success, false otherwise. 
     {
         printf("SDL wasn't initialized correctly!\n");
         SDL_Log("SDL Error: %s",SDL_GetError());
@@ -115,6 +116,7 @@ int main(void)
     SDL_DestroyRenderer(rendbase);
     SDL_DestroyWindow(winbase);
     SDL_Quit();
+    */
 
 
     struct WAVHeader_s wav;
@@ -123,13 +125,7 @@ int main(void)
     SBYTE* PCMD = NULL;
 
 
-    memcpy(wav.RIFF, "RIFF", 4);
 
-    memcpy(wav.FTYPE, "WAVE", 4);
-
-    memcpy(wav.FMT, "fmt ", 4);
-
-    memcpy(wav.DATACHUNK, "data", 4);
 
     InitRIFF(&wav, WAV_LINEARPCM, CD_SMPLRATE, WAV_STEREO, 16);
 
