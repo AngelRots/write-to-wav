@@ -13,6 +13,18 @@
 
 #include "vgui/vgui_base.h"
 
+enum EXITCODES 
+{
+  EC_SUCCESS,
+  EC_NOPTR,
+  EC_ERRNRENDER,
+  EC_ERRWIN,
+  EC_ERRINIT,
+  EC_USRERR,
+  EC_SZNMATCH
+
+};
+
 
 int main(void)
 {
@@ -42,7 +54,7 @@ int main(void)
     {
         printf("SDL wasn't initialized correctly!\n");
         SDL_Log("SDL Error: %s",SDL_GetError());
-        exit(-3);
+        exit(EC_ERRINIT);
         
     }
 
@@ -50,14 +62,14 @@ int main(void)
     if(winbase == NULL)
     {
         SDL_Log("SDL Window Error: %s",SDL_GetError());
-        exit(-4);
+        exit(EC_ERRWIN);
     }
 
     rendbase = SDL_CreateRenderer(winbase,NULL);
     if(rendbase == NULL)
     {
         SDL_Log("SDL Renderer Error: %s",SDL_GetError());
-        exit(-5);
+        exit(EC_ERRNRENDER);
     }
     
     SDL_Event LIB_EVENT;
@@ -122,7 +134,7 @@ int main(void)
     if(strlen(filename) > OS_PATHMAX - 4)
     {
         printf("Filename was too long!\n");
-        exit(-2);
+        exit(EC_USRERR);
     }
 
     printf("Checking WAV Header Size...\n");
@@ -131,7 +143,7 @@ int main(void)
     {
         printf("WAV Header size doesn't match! (%zu)\n",sizeof(wav));
         printf("Exiting program!\n");
-        exit(-1);
+        exit(EC_SZNMATCH);
     }
     printf("WAV Header is %zu bytes.\n", sizeof(wav));
 
@@ -139,7 +151,7 @@ int main(void)
     if (fp == NULL)
     {
         printf("Error creating file!");
-        exit(-1);
+        exit(EC_NOPTR);
     }
 
     // Write the header to the file
@@ -159,5 +171,5 @@ int main(void)
     free(PCMD);
 
     printf("WAV file created successfully!\n");
-    return 0;
+    return EC_SUCCESS;
 }
