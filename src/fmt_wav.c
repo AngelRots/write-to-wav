@@ -13,6 +13,15 @@
  */
 void InitRIFF(struct WAVHeader_s* wav, int PCM, int kHz, int chnum, int bitdepth)
 {
+
+    memcpy(wav->RIFF, "RIFF", 4);
+
+    memcpy(wav->FTYPE, "WAVE", 4);
+
+    memcpy(wav->FMT, "fmt ", 4);
+
+    memcpy(wav->DATACHUNK, "data", 4);
+
     int numSamples = kHz;                // number of samples for 1 second of audio
     wav->LEN = 16;                       // PCM
     wav->AFORMAT = PCM;                  // PCM
