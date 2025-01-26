@@ -11,65 +11,16 @@
 #define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
 #include <SDL3/SDL.h>
 
-
-
-void gui_placeholder()
-{
-    SDL_Window* window = NULL;
-    SDL_Renderer* render = NULL;
-
-    if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) /* Returns true on success, false otherwise. */
-    {
-        printf("SDL wasn't initialized correctly!\n");
-        SDL_Log("SDL Error: %s",SDL_GetError());
-        exit(-3);
-    }
-
-    window = SDL_CreateWindow("Cruel World!",800,600,0);
-    if(window == NULL)
-    {
-        SDL_Log("SDL Window Error: %s",SDL_GetError());
-        exit(-4);
-    }
-
-    render = SDL_CreateRenderer(window,NULL);
-    if(render == NULL)
-    {
-        SDL_Log("SDL Renderer Error: %s",SDL_GetError());
-        exit(-5);
-    }
-    
-    SDL_Event LIB_EVENT;
-    
-    int noInit = 0;
-    while(!noInit)
-    {
-        while(SDL_PollEvent(&LIB_EVENT)) 
-        {
-            switch(LIB_EVENT.type) 
-            {
-                case SDL_EVENT_QUIT:
-                SDL_Log("SDL3 Event Exception!");
-                noInit = 1;
-                break;
-            }
-        }
-        SDL_SetRenderDrawColor(render,0,0,0xff,0xff);
-        SDL_RenderClear(render);
-        SDL_RenderPresent(render);
-        SDL_Delay(1);
-    }
-    SDL_Log("SDL Shutdown!");
-    SDL_DestroyRenderer(render);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-}
-
+#include "vgui/vgui_base.h"
 
 
 int main(void)
 {
-    //gui_placeholder();
+    //SDL_Window* winbase = NULL;
+    //SDL_Renderer* rendbase = NULL;
+
+    //vgui_base("Oh my SDL!",1024,768,winbase,rendbase,255,255,0);
+    
 
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
