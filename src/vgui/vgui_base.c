@@ -25,7 +25,6 @@ void vgui_button(SDL_Renderer*rend,struct VGUIButton* vbutton)
 
    SDL_RenderFillRect(rend,&quickref);
    
-   SDL_RenderPresent(rend);
    SDL_Delay(1);
 
 }

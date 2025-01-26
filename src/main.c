@@ -28,27 +28,34 @@ enum EXITCODES
 
 int main(void)
 {
-    struct VGUI vgui;
-    struct VGUIButton vbutton;
     SDL_Window* winbase = NULL;
     SDL_Renderer* rendbase = NULL;
 
-    
+    struct VGUI vgui;
     vgui.handle = "Meow!";
     vgui.w = 800;
     vgui.h = 600;
-    vgui.r = 0;
-    vgui.g = 0;
-    vgui.b = 150;
+    vgui.r = 255;
+    vgui.g = 255;
+    vgui.b = 255;
 
-    vbutton.b_w = 64;
-    vbutton.b_h = 64;
-    vbutton.b_x = 100;
-    vbutton.b_y = 100;
-    
-    vbutton.b_r = 255;
-    vbutton.b_g = 255;
-    vbutton.b_b = 255;
+    struct VGUIButton button1;
+    button1.b_x = 100;
+    button1.b_y = 100;
+    button1.b_w = 200;
+    button1.b_h = 150;
+    button1.b_r = 0;
+    button1.b_g = 0;
+    button1.b_b = 255;
+
+    struct VGUIButton button2;
+    button2.b_x = 400;
+    button2.b_y = 300;
+    button2.b_w = 200;
+    button2.b_h = 150;
+    button2.b_r = 255;
+    button2.b_g = 0;
+    button2.b_b = 0;
 
     if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) /* Returns true on success, false otherwise. */
     {
@@ -97,7 +104,8 @@ int main(void)
         }
         SDL_SetRenderDrawColor(rendbase, vgui.r, vgui.g, vgui.b, 0xff);
         SDL_RenderClear(rendbase);
-          vgui_button(rendbase,&vbutton);     
+        vgui_button(rendbase,&button1);     
+        vgui_button(rendbase,&button2);
         SDL_RenderPresent(rendbase);
         SDL_Delay(1);
 
