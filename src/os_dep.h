@@ -12,15 +12,4 @@ typedef char SBYTE;
 #define OS_PATHMAX 260
 
 
-// I HATE WINDOWS I HATE WINDOWS
-
-void slp(int value)
-{
-    #ifdef _WIN32
-    Sleep(value*1000);
-    #else
-    sleep(value);
-    #endif
-}
-
 #endif /* os_dep_h */
