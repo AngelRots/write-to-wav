@@ -97,7 +97,7 @@ int main(void)
         ImGui::Text("Cruel World!");
         if(ImGui::Button("Placeholder"))
         {
-         printf("ImGui Button was pressed!");
+         printf("ImGui Button was pressed!\n");
         }
         if(ImGui::Button("Quit"))
         {
@@ -116,7 +116,7 @@ int main(void)
 
         
     }
-    SDL_Log("SDL Shutdown!");
+    SDL_Log("SDL Shutdown!\n");
     ImGui_ImplSDLRenderer3_Shutdown();
     ImGui_ImplSDL3_Shutdown();
     ImGui::DestroyContext();
