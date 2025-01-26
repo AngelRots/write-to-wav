@@ -10,6 +10,8 @@
 typedef char SBYTE;
 
 #define OS_PATHMAX 260
+#define PI         3.14159265358979323846
+#define MAX_AMP    32767
 
 
 #endif /* os_dep_h */
