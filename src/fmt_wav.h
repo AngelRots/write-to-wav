@@ -33,6 +33,7 @@ struct WAVHeader_s      // WAV Structure [44 Bytes]
 };
 #pragma pack(pop)
 
+
 void InitRIFF(struct WAVHeader_s* wav,int PCM, int kHz, int chnum, int bitdepth);
 
 void CreatePCM(struct WAVHeader_s* wav,FILE*fptr);
