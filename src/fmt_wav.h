@@ -1,8 +1,8 @@
 #include <stdint.h>
 #include "os_dep.h"
 
-#ifndef AUDIOLIB_H
-#define AUDIOLIB_H
+#ifndef FMT_WAV_H
+#define FMT_WAV_H
 
 
 #define CD_SMPLRATE     44100
@@ -31,4 +31,8 @@ struct WAVHeader_s      // WAV Structure [44 Bytes]
 };
 #pragma pack(pop)
 
-#endif /* audiolib_h */
+void InitRIFF(struct WAVHeader_s* wav,int PCM, int kHz, int chnum, int bitdepth);
+
+void CreatePCM();
+
+#endif /* fmt_wav_h */
