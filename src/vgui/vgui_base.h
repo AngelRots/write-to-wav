@@ -34,7 +34,6 @@ struct VGUI
 };
 
 
-void vgui_button(SDL_Renderer*rend,struct VGUIButton*vbutton);
 
 
 #endif /* vgui_base_h */

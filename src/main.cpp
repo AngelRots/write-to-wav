@@ -10,7 +10,7 @@
 
 #define SDL_MAIN_HANDLED // Avoid Main() method before sdl.h
 #include <SDL3/SDL.h>
-
+#include <imgui.h>
 #include "vgui/vgui_base.h"
 
 enum EXITCODES 
