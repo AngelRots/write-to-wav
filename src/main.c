@@ -74,7 +74,7 @@ int main(void)
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
     char fullFilename[OS_PATHMAX + 4]; 
-    //SBYTE* PCMD = NULL;
+    SBYTE* PCMD = NULL;
 
 
     memcpy(wav.RIFF, "RIFF", 4);
@@ -124,12 +124,13 @@ int main(void)
 
     printf("Writing Raw Data...\n");
     xsleep(1);
-    CreatePCM(&wav,fp);
+    CreatePCM(&wav,PCMD,fp,0);
 
     printf("Data Written!\n");
     printf("WAV Size: %.1fKB\n", round(wav.DATASZ / 1024.0));
 
     fclose(fp);
+    free(PCMD);
 
     printf("WAV file created successfully!\n");
     return 0;

@@ -36,6 +36,6 @@ struct WAVHeader_s      // WAV Structure [44 Bytes]
 
 void InitRIFF(struct WAVHeader_s* wav,int PCM, int kHz, int chnum, int bitdepth);
 
-void CreatePCM(struct WAVHeader_s* wav,FILE*fptr);
+void CreatePCM(struct WAVHeader_s* wav,SBYTE* PMD,FILE*fptr,int memflag);
 
 #endif /* fmt_wav_h */
