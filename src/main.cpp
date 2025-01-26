@@ -95,6 +95,7 @@ int main(void)
                 printf("Mouse X:%f\n",mouse_x);
 
             }
+            ImGui_ImplSDL3_ProcessEvent(&LIB_EVENT);
 
         }
         ImGui_ImplSDLRenderer3_NewFrame();
