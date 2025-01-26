@@ -74,7 +74,7 @@ int main(void)
     struct WAVHeader_s wav;
     char filename[OS_PATHMAX]; 
     char fullFilename[OS_PATHMAX + 4]; 
-    SBYTE* PCMD = NULL;
+    //SBYTE* PCMD = NULL;
 
 
     memcpy(wav.RIFF, "RIFF", 4);
