@@ -16,10 +16,19 @@
 
 int main(void)
 {
-    //SDL_Window* winbase = NULL;
-    //SDL_Renderer* rendbase = NULL;
+    struct vgui vgui;
+    SDL_Window* winbase = NULL;
+    SDL_Renderer* rendbase = NULL;
 
-    //vgui_base("Oh my SDL!",1024,768,winbase,rendbase,255,255,0);
+    
+    vgui.handle = "Meow!";
+    vgui.h = 800;
+    vgui.w = 600;
+    vgui.r = 0;
+    vgui.g = 0;
+    vgui.b = 150;
+
+    vgui_base(winbase,rendbase,&vgui);
     
 
     struct WAVHeader_s wav;

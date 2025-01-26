@@ -3,7 +3,17 @@
 
 #include <SDL3/SDL.h>
 
-void vgui_base(const char* name, int w, int h, SDL_Window*win,SDL_Renderer*rend,Uint8 r,Uint8 g, Uint8 b);
+struct vgui 
+{
+    const char* handle; // Window Name
+    int w;              // Window Height
+    int h;              // Window Width
+    Uint8 r;           
+    Uint8 g;
+    Uint8 b;
+};
+
+void vgui_base(SDL_Window*win,SDL_Renderer*rend,struct vgui* vgui);
 
 
 #endif /* vgui_base_h */

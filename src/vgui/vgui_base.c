@@ -2,7 +2,14 @@
 #include "vgui_base.h"
 
 
-void vgui_base(const char* name, int w, int h, SDL_Window*win,SDL_Renderer*rend,Uint8 r,Uint8 g, Uint8 b)
+/**
+ * @brief          Creates a window using SDL3 with a structure's parameters.
+ * 
+ * @param win      The pointer to the SDL window. 
+ * @param rend     The pointer to the SDL renderer.
+ * @param vgui     The address of the VGUI structure.
+ */
+void vgui_base(SDL_Window*win,SDL_Renderer*rend,struct vgui* vgui)
 {
   
 
@@ -13,7 +20,7 @@ void vgui_base(const char* name, int w, int h, SDL_Window*win,SDL_Renderer*rend,
         exit(-3);
     }
 
-    win = SDL_CreateWindow(name,w,h,0);
+    win = SDL_CreateWindow(vgui->handle,vgui->w,vgui->h,0);
     if(win == NULL)
     {
         SDL_Log("SDL Window Error: %s",SDL_GetError());
@@ -42,7 +49,7 @@ void vgui_base(const char* name, int w, int h, SDL_Window*win,SDL_Renderer*rend,
                 break;
             }
         }
-        SDL_SetRenderDrawColor(rend,r,g,b,0xff);
+        SDL_SetRenderDrawColor(rend,vgui->r,vgui->g,vgui->b,0xff);
         SDL_RenderClear(rend);
         SDL_RenderPresent(rend);
         SDL_Delay(1);
