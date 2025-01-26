@@ -1,10 +1,11 @@
 #include "fmt_wav.h"
-#include <stdio.h>
+#include "audiodef.h"
+
 
 /**
  * @brief Initializes the values of the WAV Header with the specified information.
  * 
- * @param wav The address of the file header.
+ * @param wav The address of the file structure.
  * @param PCM The audio format (PCM).
  * @param kHz The sample rate in kHz.
  * @param chnum The number of channels (e.g. stereo).
@@ -23,4 +24,24 @@ void InitRIFF(struct WAVHeader_s* wav, int PCM, int kHz, int chnum, int bitdepth
     wav->DATASZ = numSamples * wav->CHANNELS * (wav->BITDEPTH / 8);        // Size of audio data
 
     wav->SIZE = wav->DATASZ - 8; // RIFF Chunk Size
+}
+
+/** 
+* @brief Allocates dynamic memory and writes audio in a WAV file before freeing it. 
+* @param wav The address of the file structure.
+* @param fptr A pointer to the file.
+*/
+void CreatePCM(struct WAVHeader_s* wav,FILE*fptr)
+{
+    SBYTE* audioData = (SBYTE*)calloc(wav->DATASZ, sizeof(SBYTE));
+    for (int i = 0; i < wav->SMPLRATE; i++)
+    {
+        int sampleValue = MAX_AMP * cos((2 * PI * NOTE_C3 * i) / wav->SMPLRATE);
+
+        audioData[i * 2] = (SBYTE)(sampleValue & 0xFF);              // Lower byte
+        audioData[i * 2 + 1] = (SBYTE)((sampleValue >> 8) & 0xFF);   // Upper byte
+    }
+        fwrite(audioData, sizeof(SBYTE), wav->DATASZ, fptr);
+        free(audioData);
+
 }

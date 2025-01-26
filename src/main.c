@@ -12,8 +12,6 @@
 #include <SDL3/SDL.h>
 
 
-#define PI      3.14159265358979323846
-#define MAX_AMP 32767
 
 void gui_placeholder()
 {
@@ -121,22 +119,15 @@ int main(void)
     fwrite(&wav, 1, WAV_EXSIZE, fp);
     
 
-    SBYTE* audioData = (SBYTE*)calloc(wav.DATASZ, sizeof(SBYTE));
-    for (int i = 0; i < wav.SMPLRATE; i++)
-    {
-        int sampleValue = MAX_AMP * cos((2 * PI * NOTE_C3 * i) / wav.SMPLRATE);
 
-        audioData[i * 2] = (SBYTE)(sampleValue & 0xFF);              // Lower byte
-        audioData[i * 2 + 1] = (SBYTE)((sampleValue >> 8) & 0xFF);   // Upper byte
-    }
     printf("Writing Raw Data...\n");
     xsleep(1);
-    fwrite(audioData, sizeof(SBYTE), wav.DATASZ, fp);
+    CreatePCM(&wav,fp);
+
     printf("Data Written!\n");
     printf("WAV Size: %.1fKB\n", round(wav.DATASZ / 1024.0));
 
     fclose(fp);
-    free(audioData);
 
     printf("WAV file created successfully!\n");
     return 0;

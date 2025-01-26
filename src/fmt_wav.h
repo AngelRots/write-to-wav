@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include "os_dep.h"
+#include <stdio.h>
+#include <math.h>
 
 #ifndef FMT_WAV_H
 #define FMT_WAV_H
@@ -33,6 +35,6 @@ struct WAVHeader_s      // WAV Structure [44 Bytes]
 
 void InitRIFF(struct WAVHeader_s* wav,int PCM, int kHz, int chnum, int bitdepth);
 
-void CreatePCM();
+void CreatePCM(struct WAVHeader_s* wav,FILE*fptr);
 
 #endif /* fmt_wav_h */
