@@ -5,13 +5,14 @@
 
 using namespace CGUI;
 
-bool Panel::isActive()
-{
-    return true;
-}
 
 void Panel::DebugMain()
 {
    ImGui::Begin("Oh no!");
    ImGui::End();
+}
+
+void Panel::WinGetMenuBar()
+{
+    /**/
 }

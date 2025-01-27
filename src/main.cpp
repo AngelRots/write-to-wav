@@ -16,6 +16,7 @@
 #include "imgui/include/imgui_impl_sdlrenderer3.h"
 #include <SDL3/SDL.h>
 
+using namespace CGUI;
 
 
 enum EXITCODES 
@@ -37,9 +38,10 @@ int main(void)
     SDL_Window*   winbase  = NULL;
     SDL_Renderer* rendbase = NULL;
 
-    
+    Panel vpan;
+    App   app;
 
-    bool isAct;
+    
     struct VGUI vgui;
     vgui.handle = "Meow!";
     vgui.w = 800;
@@ -81,7 +83,7 @@ int main(void)
 
 
     int noInit = 0;
-    while(!noInit)
+    while(!noInit && vpan.WinActive)
     {
         while(SDL_PollEvent(&LIB_EVENT)) 
         {
@@ -99,21 +101,17 @@ int main(void)
 
         ImGui::StyleColorsDark();
         ImGui::NewFrame();
-        isAct = true;
         
-        ImGui::Begin("ImGui Menu",&isAct,ImGuiWindowFlags_MenuBar);
-        if(ImGui::BeginMenuBar())
+        ImGui::Begin("ImGui Menu",&vpan.WinActive,ImGuiWindowFlags_MenuBar);
+        ImGui::Text("ImGui Version: (%s)",IMGUI_VERSION);
+        ImGui::Spacing();
+        if(ImGui::BeginMainMenuBar())
         {
-            if(ImGui::BeginMenu("Main"))
-            {
-                if(ImGui::MenuItem("Quit","Ctrl+W")) {break;}
-                ImGui::EndMenu();
-            }
-            ImGui::EndMenuBar();
+            if(ImGui::Button("Quit")) { vpan.WinActive = false; }
+            ImGui::EndMainMenuBar();
         }
         
-        static float ColorValues[3] = {1.0f,1.0f,1.0f};
-        ImGui::ColorEdit3("Color Picker",ColorValues);
+        ImGui::ColorEdit3("Color Picker",vpan.WinColors);
        
         ImGui::End();
 

@@ -7,8 +7,19 @@ namespace CGUI
     class Panel
     {
     public:
-        void DebugMain();
-        bool isActive();
+        void        DebugMain();
+        bool        WinActive = true; // We define this bool so that we can keep track of the status of the panel with any API
+        static void WinGetMenuBar();
+        float       WinColors[3] = {1.0f,1.0f,1.0f}; // Array for ImGui's Color Picker
+    };
+
+    class App : public Panel 
+    {
+      public:
+      bool WinGeneric   = true;
+      bool WinWrite     = false;
+      bool WinDebug     = false;
+      bool WinColPicker = false;
     };
 
 }
