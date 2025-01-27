@@ -103,9 +103,7 @@ int main(void)
         ImGui::NewFrame();
         if(app.WinStyleEdit)
         {
-            ImGui::Begin("Dear ImGui Style Editor", &app.WinStyleEdit);
-            ImGui::ShowStyleEditor();
-            ImGui::End();
+           app.CRTStyleEdit(&app.WinStyleEdit);
         }
         ImGui::Begin("ImGui Menu",&vpan.WinActive,ImGuiWindowFlags_MenuBar);
         ImGui::Text("ImGui Version: (%s)",IMGUI_VERSION);
