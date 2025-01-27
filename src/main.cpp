@@ -7,6 +7,7 @@
 #include "audiodef.h"
 #include "os_dep.h"
 #include "xclock.h"
+#include "generic.h"
 
 
 #include "vgui/vgui_base.h"
@@ -44,11 +45,11 @@ int main(void)
     
     struct VGUI vgui;
     vgui.handle = "Meow!";
-    vgui.w = 800;
-    vgui.h = 600;
-    vgui.r = 70;
-    vgui.g = 70;
-    vgui.b = 70;
+    vgui.w = G_WINH;
+    vgui.h = G_WINW;
+    vgui.r = G_GR;
+    vgui.g = G_GR;
+    vgui.b = G_GR;
 
 
     if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) // Returns true on success, false otherwise. 
@@ -78,6 +79,8 @@ int main(void)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
+    //ImFontConfig ttf;
+    //ImFont* gothic16 = io.Fonts->AddFontFromFileTTF("../content/GOTHIC16.TTF",24,&ttf);
     ImGui_ImplSDL3_InitForSDLRenderer(winbase,rendbase);
     ImGui_ImplSDLRenderer3_Init(rendbase);
 
@@ -106,7 +109,9 @@ int main(void)
            app.CRTStyleEdit(&app.WinStyleEdit);
         }
         ImGui::Begin("ImGui Menu",&vpan.WinActive,ImGuiWindowFlags_MenuBar);
+       //ImGui::PushFont(gothic16);
         ImGui::Text("ImGui Version: (%s)",IMGUI_VERSION);
+        //ImGui::PopFont();
         ImGui::Spacing();
         
         if(ImGui::BeginMainMenuBar())
