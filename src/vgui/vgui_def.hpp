@@ -2,6 +2,8 @@
 #ifndef VGUI_DEF_HPP
 #define VGUI_DEF_HPP
 
+using GUIFlag = bool*;
+
 namespace CGUI
 {
     class Panel
@@ -22,7 +24,7 @@ namespace CGUI
       bool WinDebug     = false;
       bool WinColPicker = false;
       bool WinStyleEdit = false;
-      void CRTStyleEdit();
+      virtual void CRTStyleEdit(GUIFlag imBool);
       
     };
 

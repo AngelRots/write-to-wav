@@ -8,8 +8,7 @@ using namespace CGUI;
 
 void Panel::DebugMain()
 {
-   ImGui::Begin("Oh no!");
-   ImGui::End();
+
 }
 
 void Panel::WinGetMenuBar()
@@ -17,4 +16,9 @@ void Panel::WinGetMenuBar()
     /**/
 }
 
-
+void App::CRTStyleEdit(GUIFlag ImBool)
+{
+    ImGui::Begin("Dear ImGui Style Editor", ImBool);
+    ImGui::ShowStyleEditor();
+    ImGui::End();
+}
