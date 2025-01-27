@@ -10,10 +10,13 @@
 
 
 #include "vgui/vgui_base.h"
+#include "vgui/vgui_def.hpp"
 #include "imgui/include/imgui.h"
 #include "imgui/include/imgui_impl_sdl3.h"
 #include "imgui/include/imgui_impl_sdlrenderer3.h"
 #include <SDL3/SDL.h>
+
+
 
 enum EXITCODES 
 {
@@ -31,16 +34,19 @@ enum EXITCODES
 int main(void)
 {
      
-    SDL_Window* winbase = NULL;
+    SDL_Window*   winbase  = NULL;
     SDL_Renderer* rendbase = NULL;
 
+    
+
+    bool isAct;
     struct VGUI vgui;
     vgui.handle = "Meow!";
     vgui.w = 800;
     vgui.h = 600;
-    vgui.r = 255;
-    vgui.g = 255;
-    vgui.b = 255;
+    vgui.r = 70;
+    vgui.g = 70;
+    vgui.b = 70;
 
 
     if(SDL_Init(SDL_INIT_VIDEO || SDL_INIT_EVENTS) != 1) // Returns true on success, false otherwise. 
@@ -91,19 +97,26 @@ int main(void)
         ImGui_ImplSDLRenderer3_NewFrame();
         ImGui_ImplSDL3_NewFrame();
 
+        ImGui::StyleColorsDark();
         ImGui::NewFrame();
-
-        ImGui::Begin("ImGui Window");
-        ImGui::Text("Cruel World!");
-        if(ImGui::Button("Placeholder"))
+        isAct = true;
+        
+        ImGui::Begin("ImGui Menu",&isAct,ImGuiWindowFlags_MenuBar);
+        if(ImGui::BeginMenuBar())
         {
-         printf("ImGui Button was pressed!\n");
+            if(ImGui::BeginMenu("Main"))
+            {
+                if(ImGui::MenuItem("Quit","Ctrl+W")) {break;}
+                ImGui::EndMenu();
+            }
+            ImGui::EndMenuBar();
         }
-        if(ImGui::Button("Quit"))
-        {
-            break;
-        }
+        
+        static float ColorValues[3] = {1.0f,1.0f,1.0f};
+        ImGui::ColorEdit3("Color Picker",ColorValues);
+       
         ImGui::End();
+
         ImGui::Render();
 
         SDL_SetRenderDrawColor(rendbase, vgui.r, vgui.g, vgui.b, 0xff);
