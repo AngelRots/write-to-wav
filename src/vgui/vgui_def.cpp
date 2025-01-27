@@ -3,13 +3,14 @@
 #include "imgui.h"
 #include "vgui_def.hpp"
 
+using namespace CGUI;
 
-bool CGUI::Panel::isActive()
+bool Panel::isActive()
 {
     return true;
 }
 
-void CGUI::Panel::DebugMain()
+void Panel::DebugMain()
 {
    ImGui::Begin("Oh no!");
    ImGui::End();
