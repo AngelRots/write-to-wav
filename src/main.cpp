@@ -99,27 +99,21 @@ int main(void)
         ImGui_ImplSDLRenderer3_NewFrame();
         ImGui_ImplSDL3_NewFrame();
 
+        ImGui::StyleColorsDark();
+        ImGui::NewFrame();
         if(app.WinStyleEdit)
         {
             ImGui::Begin("Dear ImGui Style Editor", &app.WinStyleEdit);
             ImGui::ShowStyleEditor();
             ImGui::End();
         }
-
-
-
-
-
-        ImGui::StyleColorsDark();
-        ImGui::NewFrame();
-
         ImGui::Begin("ImGui Menu",&vpan.WinActive,ImGuiWindowFlags_MenuBar);
         ImGui::Text("ImGui Version: (%s)",IMGUI_VERSION);
         ImGui::Spacing();
         
         if(ImGui::BeginMainMenuBar())
         {
-            if(ImGui::Button("Quit"))  { vpan.WinActive   = false;  }
+            if(ImGui::Button("Quit"))         { vpan.WinActive   = false;  }
             if(ImGui::Button("Style Editor")) { app.WinStyleEdit = true;   } 
           
             ImGui::EndMainMenuBar();
