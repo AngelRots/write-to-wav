@@ -120,7 +120,7 @@ int main(void)
         if(ImGui::BeginMainMenuBar())
         {
             if(ImGui::Button("Quit"))  { vpan.WinActive   = false;  }
-            if(ImGui::Button("Print")) { app.WinStyleEdit = true;   } 
+            if(ImGui::Button("Style Editor")) { app.WinStyleEdit = true;   } 
           
             ImGui::EndMainMenuBar();
         }
