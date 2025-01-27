@@ -22,3 +22,10 @@ void App::CRTStyleEdit(GUIFlag ImBool)
     ImGui::ShowStyleEditor();
     ImGui::End();
 }
+
+void App::CRTDebugLog(GUIFlag ImBool)
+{
+    ImGui::Begin("Debug Console",ImBool);
+    ImGui::Text("Console Output: ");
+    ImGui::End();
+}

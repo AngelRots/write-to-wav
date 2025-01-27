@@ -24,7 +24,9 @@ namespace CGUI
       bool WinDebug     = false;
       bool WinColPicker = false;
       bool WinStyleEdit = false;
+      bool WinDebugLog  = false;
       virtual void CRTStyleEdit(GUIFlag imBool);
+      virtual void CRTDebugLog(GUIFlag imBool);
       
     };
 

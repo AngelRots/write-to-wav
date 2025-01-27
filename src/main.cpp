@@ -104,10 +104,9 @@ int main(void)
 
         ImGui::StyleColorsDark();
         ImGui::NewFrame();
-        if(app.WinStyleEdit)
-        {
-           app.CRTStyleEdit(&app.WinStyleEdit);
-        }
+        if(app.WinStyleEdit) {app.CRTStyleEdit(&app.WinStyleEdit);}
+        if(app.WinDebugLog)  {app.CRTDebugLog(&app.WinDebugLog);}
+       
         ImGui::Begin("ImGui Menu",&vpan.WinActive,ImGuiWindowFlags_MenuBar);
        //ImGui::PushFont(gothic16);
         ImGui::Text("ImGui Version: (%s)",IMGUI_VERSION);
@@ -116,8 +115,9 @@ int main(void)
         
         if(ImGui::BeginMainMenuBar())
         {
-            if(ImGui::Button("Quit"))         { vpan.WinActive   = false;  }
-            if(ImGui::Button("Style Editor")) { app.WinStyleEdit = true;   } 
+            if(ImGui::Button("Quit"))          { vpan.WinActive   = false;  }
+            if(ImGui::Button("Style Editor"))  { app.WinStyleEdit = true;   } 
+            if(ImGui::Button("Debug Console")) { app.WinDebugLog  = true;   }
           
             ImGui::EndMainMenuBar();
         }
